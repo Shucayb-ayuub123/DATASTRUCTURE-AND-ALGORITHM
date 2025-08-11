@@ -1,1 +1,2 @@
-console.log(fruit)
+
+// console.log(stack2.pop());
