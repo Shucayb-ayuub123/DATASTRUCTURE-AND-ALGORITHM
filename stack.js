@@ -30,24 +30,74 @@
 // console.log(stack2.pop());
 
 
-function reverse2(element) {
-    stack2 = []
+// function reverse2(element) {
+//     stack2 = []
    
-    for (const char of element) {
-        stack2.push(char)
-    }
+//     for (const char of element) {
+//         stack2.push(char)
+//     }
     
 
-    let reverse = ""
+//     let reverse = ""
 
-    while(stack2.length > 0) {
-        reverse+=stack2.pop()
+//     while(stack2.length > 0) {
+//         reverse+=stack2.pop()
+//     }
+
+//     return reverse
+// }
+
+// console.log(reverse2("shucayb"));
+
+
+
+class BrowserHistory {
+  constructor(homepage) {
+    this.backStack = [];
+    this.forwardStack = [];
+    this.current = homepage;
+  }
+
+  visit(page) {
+    this.backStack.push(this.current);
+    this.current = page;
+    this.forwardStack = []; // clear forward history
+    console.log(`Visited: ${page}`);
+  }
+
+  back() {
+    if (this.backStack.length === 0) {
+      console.log("No pages in back history");
+      return;
     }
+    this.forwardStack.push(this.current);
+    this.current = this.backStack.pop();
+    console.log(`Went back to: ${this.current}`);
+  }
 
-    return reverse
+  forward() {
+    if (this.forwardStack.length === 0) {
+      console.log("No pages in forward history");
+      return;
+    }
+    this.backStack.push(this.current);
+    this.current = this.forwardStack.pop();
+    console.log(`Went forward to: ${this.current}`);
+  }
+
+  getCurrentPage() {
+    return this.current;
+  }
 }
 
-console.log(reverse2("shucayb"));
+// Example usage:
+const browser = new BrowserHistory("homepage.com");
 
-
+browser.visit("page1.com");
+browser.visit("page2.com");
+browser.back();       // Goes back to page1.com
+browser.back();       // Goes back to homepage.com
+browser.forward();    // Goes forward to page1.com
+browser.visit("page3.com"); // Visiting a new page clears forwardStack
+browser.back();       // Goes back to page1.com
 
