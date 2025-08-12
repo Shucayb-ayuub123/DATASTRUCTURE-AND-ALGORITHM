@@ -1,2 +1,10 @@
+let queue = []
+// queue.push("apple")
+// queue.push("orange")
+// queue.push("mango")
+// queue.push("water")
 
-// console.log(stack2.pop());
+// queue.shift()
+// queue.shift()
+// queue.shift()
+// console.log(queue); 
